@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+    {% block content %}
+        <form action="{{url_for('getleaderboard')}}" method="POST">
+            <div class="season">
+                <label for="season">Season: </label>
+                <select name="season" id="season" class="season-selector">
+                    <option value="season1">Season1</option>
+                </select>
+            </div>
+            <div class="Region">
+                <label for="region">Region: </label>
+                <select name="region" id="region" class="region-selector">
+                    <option value="global">Global</option>
+                    <option value="europe">Europe</option>
+                    <option value="africa">Africa</option>
+                    <option value="australia">Australia</option>
+                    <option value="china">China</option>
+                    <option value="northamerica">North America</option>
+                    <option value="southamerica">South America</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <br>
+        <h2>CS2 {{regionName}} Leaderboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>Rank</td>
+                    <td>Name</td>
+                    <td>Rating</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                    <tr id="{{player.rank}}">
+                        <td>{{player.rank}}</td>
+                        <td>{{player.name}}</td>
+                        <td>{{player.score}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
